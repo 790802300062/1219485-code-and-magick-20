@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 var CLOUD_HEIGHT = 270;
 var CLOUD_WIDTH = 420;
@@ -28,24 +28,22 @@ var renderCloudTop = function (ctx, x, y, width, height, color) {
   ctx.fillStyle = color;
   ctx.beginPath();
   ctx.moveTo(x + 75, (y + height) / 2);
-  ctx.arc(x + 75, (y + height) / 2, 75, 0, Math.PI*2, true);
+  ctx.arc(x + 75, (y + height) / 2, 75, 0, Math.PI * 2, true);
   ctx.moveTo(x + 125, (y + height) / 2 - 50);
-  ctx.arc(x + 125, (y + height) / 2 - 50, 75, 0, Math.PI*2, true);
+  ctx.arc(x + 125, (y + height) / 2 - 50, 75, 0, Math.PI * 2, true);
   ctx.moveTo(x + 170, (y + height) / 2 - 60);
-  ctx.arc(x + 170, (y + height) / 2 - 60, 75, 0, Math.PI*2, true);
+  ctx.arc(x + 170, (y + height) / 2 - 60, 75, 0, Math.PI * 2, true);
   ctx.moveTo(x + 220, (y + height) / 2 - 60);
-  ctx.arc(x + 220, (y + height) / 2 - 60, 75, 0, Math.PI*2, true);
+  ctx.arc(x + 220, (y + height) / 2 - 60, 75, 0, Math.PI * 2, true);
   ctx.moveTo(x + 300, (y + height) / 2 - 60);
-  ctx.arc(x + 300, (y + height) / 2 - 60, 75, 0, Math.PI*2, true);
+  ctx.arc(x + 300, (y + height) / 2 - 60, 75, 0, Math.PI * 2, true);
   ctx.moveTo(x + 390, (y + height) / 2 - 60);
-  ctx.arc(x + 390, (y + height) / 2 - 60, 75, 0, Math.PI*2, true);
+  ctx.arc(x + 390, (y + height) / 2 - 60, 75, 0, Math.PI * 2, true);
   ctx.moveTo(x + 445, (y + height) / 2);
-  ctx.arc(x + 445, (y + height) / 2, 75, 0, Math.PI*2, true);
+  ctx.arc(x + 445, (y + height) / 2, 75, 0, Math.PI * 2, true);
   ctx.closePath();
   ctx.fill();
-}
-
-
+};
 
 // Наибольший элемент массива
 var getMaxScore = function (array) {
@@ -60,7 +58,7 @@ var getMaxScore = function (array) {
 
 // Окно статистики
 window.renderStatistics = function (ctx, names, times) {
-  renderCloudTop(ctx, CLOUD_X + CLOUD_SHADOW_GAP , CLOUD_Y + CLOUD_SHADOW_GAP, CLOUD_WIDTH, CLOUD_HEIGHT, CLOUD_SHADOW_COLOR);
+  renderCloudTop(ctx, CLOUD_X + CLOUD_SHADOW_GAP, CLOUD_Y + CLOUD_SHADOW_GAP, CLOUD_WIDTH, CLOUD_HEIGHT, CLOUD_SHADOW_COLOR);
   renderCloudBottom(ctx, CLOUD_X + CLOUD_SHADOW_GAP / 2, CLOUD_Y + CLOUD_SHADOW_GAP, CLOUD_WIDTH, CLOUD_HEIGHT, CLOUD_SHADOW_COLOR);
   renderCloudTop(ctx, CLOUD_X, CLOUD_Y, CLOUD_WIDTH, CLOUD_HEIGHT, '#ffffff');
   renderCloudBottom(ctx, CLOUD_X, CLOUD_Y, CLOUD_WIDTH, CLOUD_HEIGHT, '#ffffff');
@@ -87,7 +85,6 @@ window.renderStatistics = function (ctx, names, times) {
     } else {
       ctx.fillStyle = playerColor;
     }
-    ctx.fillRect(CLOUD_X + CLOUD_SHADOW_GAP * 11 + BAR_WIDTH *i + BAR_GAP * i, CLOUD_HEIGHT - playerBarHeight - CLOUD_SHADOW_GAP * 3, BAR_WIDTH, playerBarHeight);
+    ctx.fillRect(CLOUD_X + CLOUD_SHADOW_GAP * 11 + BAR_WIDTH * i + BAR_GAP * i, CLOUD_HEIGHT - playerBarHeight - CLOUD_SHADOW_GAP * 3, BAR_WIDTH, playerBarHeight);
   }
 };
-
