@@ -81,7 +81,7 @@ window.renderStatistics = function (ctx, names, times) {
     ctx.fillText(names[i], CLOUD_X + CLOUD_SHADOW_GAP * 11 + BAR_WIDTH * i + BAR_GAP * i, CLOUD_HEIGHT - CLOUD_SHADOW_GAP * 2);
     ctx.fillText(times[i], CLOUD_X + CLOUD_SHADOW_GAP * 11 + BAR_WIDTH * i + BAR_GAP * i, CLOUD_HEIGHT - playerBarHeight - CLOUD_SHADOW_GAP * 5);
     var saturation = (Math.floor(Math.random() * 100)) + '%';
-    var playerColor = 'hsl(250,' + saturation + ', 50%)';
+    var playerColor = 'hsl(240,' + saturation + ', 63%)';
     if (names[i] === 'Вы') {
       ctx.fillStyle = CURRENT_PLAYER_COLOR;
     } else {
