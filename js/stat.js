@@ -56,6 +56,16 @@ var getMaxScore = function (array) {
   return maxScore;
 };
 
+// Случайный цвет для гистограммы
+var getRandomColor = function (array) {
+  var randomColor = [];
+  for (var i = 0; i < array.length; i++) {
+    var saturation = (Math.floor(Math.random() * 100)) + '%';
+    randomColor[i] = 'hsl(240,' + saturation + ', 63%)';
+  }
+  return randomColor;
+}
+
 // Окно статистики
 window.renderStatistics = function (ctx, names, times) {
   renderCloudTop(ctx, CLOUD_X + CLOUD_SHADOW_GAP, CLOUD_Y + CLOUD_SHADOW_GAP, CLOUD_WIDTH, CLOUD_HEIGHT, CLOUD_SHADOW_COLOR);
@@ -63,28 +73,31 @@ window.renderStatistics = function (ctx, names, times) {
   renderCloudTop(ctx, CLOUD_X, CLOUD_Y, CLOUD_WIDTH, CLOUD_HEIGHT, '#ffffff');
   renderCloudBottom(ctx, CLOUD_X, CLOUD_Y, CLOUD_WIDTH, CLOUD_HEIGHT, '#ffffff');
 
+  var playerMaxScore = getMaxScore(times);
+  var playerColor = getRandomColor(names);
+
   ctx.font = 'PT Mono 16px';
   ctx.fillStyle = '#000000';
   ctx.textBaseline = 'top';
   ctx.fillText('Ура вы победили!', CLOUD_WIDTH / 2 + FONT_GAP * 5, CLOUD_Y + FONT_GAP);
   ctx.fillText('Список результатов:', CLOUD_WIDTH / 2 + FONT_GAP * 5, CLOUD_Y + FONT_GAP * 3);
 
-  var playerMaxScore = getMaxScore(times);
+  var DrawChart = function (names, times) {
+    for (var i = 0; i < names.length; i++) {
+      var playerBarHeight = BAR_HEIGHT * times[i] / playerMaxScore;
+      times[i] = Math.round(times[i]);
 
-  for (var i = 0; i < names.length; i++) {
-    var playerBarHeight = BAR_HEIGHT * times[i] / playerMaxScore;
-    times[i] = Math.round(times[i]);
-
-    ctx.fillStyle = '#000000';
-    ctx.fillText(names[i], CLOUD_X + CLOUD_SHADOW_GAP * 11 + BAR_WIDTH * i + BAR_GAP * i, CLOUD_HEIGHT - CLOUD_SHADOW_GAP * 2);
-    ctx.fillText(times[i], CLOUD_X + CLOUD_SHADOW_GAP * 11 + BAR_WIDTH * i + BAR_GAP * i, CLOUD_HEIGHT - playerBarHeight - CLOUD_SHADOW_GAP * 5);
-    var saturation = (Math.floor(Math.random() * 100)) + '%';
-    var playerColor = 'hsl(240,' + saturation + ', 63%)';
-    if (names[i] === 'Вы') {
-      ctx.fillStyle = CURRENT_PLAYER_COLOR;
-    } else {
-      ctx.fillStyle = playerColor;
+      ctx.fillStyle = '#000000';
+      ctx.fillText(names[i], CLOUD_X + CLOUD_SHADOW_GAP * 11 + BAR_WIDTH * i + BAR_GAP * i, CLOUD_HEIGHT - CLOUD_SHADOW_GAP * 2);
+      ctx.fillText(times[i], CLOUD_X + CLOUD_SHADOW_GAP * 11 + BAR_WIDTH * i + BAR_GAP * i, CLOUD_HEIGHT - playerBarHeight - CLOUD_SHADOW_GAP * 5);
+      if (names[i] === 'Вы') {
+        ctx.fillStyle = CURRENT_PLAYER_COLOR;
+      } else {
+        ctx.fillStyle = playerColor[i];
+      }
+      ctx.fillRect(CLOUD_X + CLOUD_SHADOW_GAP * 11 + BAR_WIDTH * i + BAR_GAP * i, CLOUD_HEIGHT - playerBarHeight - CLOUD_SHADOW_GAP * 3, BAR_WIDTH, playerBarHeight);
     }
-    ctx.fillRect(CLOUD_X + CLOUD_SHADOW_GAP * 11 + BAR_WIDTH * i + BAR_GAP * i, CLOUD_HEIGHT - playerBarHeight - CLOUD_SHADOW_GAP * 3, BAR_WIDTH, playerBarHeight);
   }
+
+  DrawChart(names, times);
 };
