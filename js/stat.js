@@ -64,7 +64,7 @@ var getRandomColor = function (array) {
     randomColor[i] = 'hsl(240,' + saturation + ', 63%)';
   }
   return randomColor;
-}
+};
 
 // Окно статистики
 window.renderStatistics = function (ctx, names, times) {
@@ -82,7 +82,7 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.fillText('Ура вы победили!', CLOUD_WIDTH / 2 + FONT_GAP * 5, CLOUD_Y + FONT_GAP);
   ctx.fillText('Список результатов:', CLOUD_WIDTH / 2 + FONT_GAP * 5, CLOUD_Y + FONT_GAP * 3);
 
-  var DrawChart = function (names, times) {
+  var drawChart = function () {
     for (var i = 0; i < names.length; i++) {
       var playerBarHeight = BAR_HEIGHT * times[i] / playerMaxScore;
       times[i] = Math.round(times[i]);
@@ -97,7 +97,7 @@ window.renderStatistics = function (ctx, names, times) {
       }
       ctx.fillRect(CLOUD_X + CLOUD_SHADOW_GAP * 11 + BAR_WIDTH * i + BAR_GAP * i, CLOUD_HEIGHT - playerBarHeight - CLOUD_SHADOW_GAP * 3, BAR_WIDTH, playerBarHeight);
     }
-  }
+  };
 
-  DrawChart(names, times);
+  drawChart(names, times);
 };
