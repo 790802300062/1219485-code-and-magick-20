@@ -33,7 +33,7 @@ var wizardProperties = {
 
 document.querySelector('.setup').classList.remove('hidden');
 
-function createWizard(i) {
+function createWizard() {
   var wizard = {
     'name': getRandomElement(wizardProperties.NAMES) + ' ' +
       getRandomElement(wizardProperties.LAST_NAMES),
@@ -41,10 +41,10 @@ function createWizard(i) {
     'coatColor': getRandomElement(wizardProperties.COAT_COLORS),
 
     'eyesColor': getRandomElement(wizardProperties.EYES_COLOR),
-  }
+  };
 
   return wizard;
-};
+}
 
 
 function getRandomElement(array) {
