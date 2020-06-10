@@ -13,6 +13,7 @@ var ENTER_KEYCODE = 13;
 var setup = document.querySelector('.setup');
 var setupOpen = document.querySelector('.setup-open');
 var setupClose = document.querySelector('.setup-close');
+var setupInput = document.querySelector('.setup-user-name');
 
 var onPopupEscPress = function (evt) {
   if (evt.keyCode === ESC_KEYCODE) {
@@ -50,6 +51,12 @@ setupClose.addEventListener('keydown', function (evt) {
   if (evt.keyCode === ENTER_KEYCODE) {
     evt.preventDefault();
     closePopup();
+  }
+});
+
+setupInput.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === ESC_KEYCODE) {
+    evt.stopPropagation();
   }
 });
 
@@ -103,19 +110,19 @@ var wizardEyesColor = setupWizard.querySelector('.wizard-eyes');
 var fireballColor = document.querySelector('.setup-fireball-wrap');
 
 wizardCoatColor.addEventListener('click', function () {
-  var randomCoat = getRandomElement(COAT_COLORS);
-  wizardCoatColor.style.fill = randomCoat;
-  document.querySelector('input[name="coat-color"]').value = randomCoat;
+  var randomCoatColor = getRandomElement(COAT_COLORS);
+  wizardCoatColor.style.fill = randomCoatColor;
+  document.querySelector('input[name="coat-color"]').value = randomCoatColor;
 });
 
 wizardEyesColor.addEventListener('click', function () {
-  var randomEyes = getRandomElement(EYES_COLORS);
-  wizardEyesColor.style.fill = randomEyes;
-  document.querySelector('input[name="eyes-color"]').value = randomEyes;
+  var randomEyesColor = getRandomElement(EYES_COLORS);
+  wizardEyesColor.style.fill = randomEyesColor;
+  document.querySelector('input[name="eyes-color"]').value = randomEyesColor;
 });
 
 fireballColor.addEventListener('click', function () {
-  var randomFireball = getRandomElement(FIREBALL_COLORS);
-  fireballColor.style.background = randomFireball;
-  fireballColor.querySelector('input[name="fireball-color"]').value = randomFireball;
+  var randomFireballColor = getRandomElement(FIREBALL_COLORS);
+  fireballColor.style.background = randomFireballColor;
+  fireballColor.querySelector('input[name="fireball-color"]').value = randomFireballColor;
 });
